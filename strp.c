@@ -5,7 +5,7 @@
 /* Returns number of characters that precede terminating NULL character */
 size_t str_get_length(const char *s){
     size_t length = 0;
-    char* ptr = s;
+    const char* ptr = s;
     assert(s != NULL);
     while (*ptr != '\0'){
         length++;
@@ -18,7 +18,7 @@ size_t str_get_length(const char *s){
 /* Returns dest */
 /* TODO: assumes there is enough space? */
 char* str_copy(char* dst, const char* src){
-    char* src_tmp = src;
+    const char* src_tmp = src;
     char* dst_tmp = dst;
     assert(dst != NULL && src != NULL);
 
@@ -36,7 +36,7 @@ char* str_copy(char* dst, const char* src){
 /* s1 must have sufficient space to hold the result */
 char* str_concat(char* s1, const char* s2){
     char* s1_ptr = s1;
-    char* s2_ptr = s2;
+    const char* s2_ptr = s2;
     assert(s1 != NULL && s2 != NULL);
     while (*s1_ptr != '\0')
         s1_ptr++;
@@ -56,8 +56,8 @@ char* str_concat(char* s1, const char* s2){
 /* Lexicographically compare two strings */
 /* Negative means s1 comes first, zero equal, and positive is s2 comes first (TODO: verify)  */
 size_t str_compare(const char * s1, const char * s2){
-    char* s1_tmp = s1;
-    char* s2_tmp = s2;
+    const char* s1_tmp = s1;
+    const char* s2_tmp = s2;
     assert(s1 != NULL && s2 != NULL);
 
     while(*s1_tmp != '\0' && *s2_tmp != '\0'){
@@ -89,14 +89,14 @@ size_t str_compare(const char * s1, const char * s2){
 char* str_search(const char* haystack, const char *needle){
     size_t haystack_len = str_get_length(haystack);
     size_t needle_len = str_get_length(needle);
-    char* haystack_tmp = haystack;
-    char* needle_tmp = needle;
+    const char* haystack_tmp = haystack;
+    const char* needle_tmp = needle;
     size_t i, j, found;
-    char* haystack_substring;
+    const char* haystack_substring;
     assert(haystack != NULL && needle != NULL);
 
     if (needle_len == 0)
-        return haystack;
+        return (char *) haystack;
 
 
     /* Search for letters that match first letter of needle */
@@ -118,7 +118,7 @@ char* str_search(const char* haystack, const char *needle){
             }
 
             if (found == 1)
-                return haystack_tmp;
+                return (char *) haystack_tmp;
         }
 
         /* No substring match, Move haystack pointer forward in search */

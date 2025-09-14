@@ -55,8 +55,8 @@ char* str_concat(char s1[], const char s2[]){
 /* Lexicographically compare two strings */
 /* Negative means s1 comes first, zero equal, and positive is s2 comes first (TODO: verify)  */
 size_t str_compare(const char s1[], const char s2[]){
-    char* s1_tmp = s1;
-    char* s2_tmp = s2;
+    const char* s1_tmp = s1;
+    const char* s2_tmp = s2;
     int index = 0;
     assert(s1 != NULL && s2 != NULL);
 
@@ -93,7 +93,7 @@ char* str_search(const char haystack[], const char needle[]){
     assert(haystack != NULL && needle != NULL);
 
     if (needle_len == 0)
-        return haystack;
+        return (char *) haystack;
 
     /* Search for letters that match first letter of needle */
     for(i = 0; i < haystack_len; i++){
@@ -111,7 +111,7 @@ char* str_search(const char haystack[], const char needle[]){
             }
 
             if (found == 1)
-                return &haystack[i];
+                return (char *) &haystack[i];
         }
     }
 
