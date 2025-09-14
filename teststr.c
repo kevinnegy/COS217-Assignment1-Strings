@@ -72,14 +72,14 @@ static void randomString(char *pcStr, int iSize)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str_getLength() function. */
+/* Test the str_get_length() function. */
 
 static void testGetLength(void)
 {
    size_t uResult1;
    size_t uResult2;
 
-   printf("Testing Str_getLength()\n");
+   printf("Testing str_get_length()\n");
    fflush(stdout);
 
    printf("   Boundary Tests\n");
@@ -87,7 +87,7 @@ static void testGetLength(void)
 
    {
       const char acSrc[] = {'\0', 's'};
-      uResult1 = Str_getLength(acSrc);
+      uResult1 = str_get_length(acSrc);
       uResult2 = strlen(acSrc);
       ASSURE(uResult1 == uResult2);
    }
@@ -97,21 +97,21 @@ static void testGetLength(void)
 
    {
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', '\0'};
-      uResult1 = Str_getLength(acSrc);
+      uResult1 = str_get_length(acSrc);
       uResult2 = strlen(acSrc);
       ASSURE(uResult1 == uResult2);
    }
 
    {
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', 's'};
-      uResult1 = Str_getLength(acSrc);
+      uResult1 = str_get_length(acSrc);
       uResult2 = strlen(acSrc);
       ASSURE(uResult1 == uResult2);
    }
 
    {
       const char acSrc[] = {'G', 'e', 'h', 'r', 'i', 'g', '\0', 's'};
-      uResult1 = Str_getLength(acSrc);
+      uResult1 = str_get_length(acSrc);
       uResult2 = strlen(acSrc);
       ASSURE(uResult1 == uResult2);
    }
@@ -125,7 +125,7 @@ static void testGetLength(void)
       for (i = 0; i < STRESS_TEST_COUNT; i++)
       {
          randomString(acSrc, STRESS_STRING_SIZE);
-         uResult1 = Str_getLength(acSrc);
+         uResult1 = str_get_length(acSrc);
          uResult2 = strlen(acSrc);
          ASSURE(uResult1 == uResult2);
       }
@@ -134,13 +134,13 @@ static void testGetLength(void)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str_copy() function. */
+/* Test the str_copy() function. */
 
 static void testCopy(void)
 {
    char *pcResult;
 
-   printf("Testing Str_copy()\n");
+   printf("Testing str_copy()\n");
 
    printf("   Boundary Tests\n");
    fflush(stdout);
@@ -149,7 +149,7 @@ static void testCopy(void)
       const char acSrc[] = {'\0', 's'};
       char acDest1[] = {'d', 'd'};
       char acDest2[] = {'d', 'd'};
-      pcResult = Str_copy(acDest1, acSrc);
+      pcResult = str_copy(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcpy(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -159,7 +159,7 @@ static void testCopy(void)
       const char acSrc[] = {'\0', 's'};
       char acDest1[] = {'\0', 'd'};
       char acDest2[] = {'\0', 'd'};
-      pcResult = Str_copy(acDest1, acSrc);
+      pcResult = str_copy(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcpy(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -172,7 +172,7 @@ static void testCopy(void)
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', 's'};
       char acDest1[] = {'d', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] = {'d', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_copy(acDest1, acSrc);
+      pcResult = str_copy(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcpy(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -182,7 +182,7 @@ static void testCopy(void)
       const char acSrc[] = {'G', 'e', 'h', 'r', 'i', 'g', '\0', 's'};
       char acDest1[] = {'d', 'd', 'd', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] = {'d', 'd', 'd', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_copy(acDest1, acSrc);
+      pcResult = str_copy(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcpy(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -192,7 +192,7 @@ static void testCopy(void)
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', 's'};
       char acDest1[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_copy(acDest1, acSrc);
+      pcResult = str_copy(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcpy(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -211,7 +211,7 @@ static void testCopy(void)
          randomString(acSrc, STRESS_STRING_SIZE);
          randomString(acDest1, STRESS_STRING_SIZE);
          memcpy(acDest2, acDest1, STRESS_STRING_SIZE);
-         pcResult = Str_copy(acDest1, acSrc);
+         pcResult = str_copy(acDest1, acSrc);
          ASSURE(pcResult == acDest1);
          (void)strcpy(acDest2, acSrc);
          ASSURE(memcmp(acDest1, acDest2, STRESS_STRING_SIZE) == 0);
@@ -221,13 +221,13 @@ static void testCopy(void)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str_concat() function. */
+/* Test the str_concat() function. */
 
 static void testConcat(void)
 {
    char *pcResult;
 
-   printf("Testing Str_concat()\n");
+   printf("Testing str_concat()\n");
 
    printf("   Boundary Tests\n");
    fflush(stdout);
@@ -236,7 +236,7 @@ static void testConcat(void)
       const char acSrc[] = {'\0', 's', 's', 's', 's', 's'};
       char acDest1[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_concat(acDest1, acSrc);
+      pcResult = str_concat(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcat(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -246,7 +246,7 @@ static void testConcat(void)
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', 's'};
       char acDest1[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] = {'\0', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_concat(acDest1, acSrc);
+      pcResult = str_concat(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcat(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -256,7 +256,7 @@ static void testConcat(void)
       const char acSrc[] = {'\0', 's', 's', 's', 's', 's'};
       char acDest1[] = {'R', 'u', 't', 'h', '\0', 'd'};
       char acDest2[] = {'R', 'u', 't', 'h', '\0', 'd'};
-      pcResult = Str_concat(acDest1, acSrc);
+      pcResult = str_concat(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcat(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -271,7 +271,7 @@ static void testConcat(void)
          {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] =
          {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};
-      pcResult = Str_concat(acDest1, acSrc);
+      pcResult = str_concat(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcat(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
@@ -290,7 +290,7 @@ static void testConcat(void)
          randomString(acSrc, STRESS_STRING_SIZE/2);
          randomString(acDest1, STRESS_STRING_SIZE/2);
          memcpy(acDest2, acDest1, STRESS_STRING_SIZE);
-         pcResult = Str_concat(acDest1, acSrc);
+         pcResult = str_concat(acDest1, acSrc);
          ASSURE(pcResult == acDest1);
          (void)strcat(acDest2, acSrc);
          ASSURE(memcmp(acDest1, acDest2, STRESS_STRING_SIZE) == 0);
@@ -311,14 +311,14 @@ static int sign(int i)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str_compare() function. */
+/* Test the str_compare() function. */
 
 static void testCompare(void)
 {
    int iResult1;
    int iResult2;
 
-   printf("Testing Str_compare()\n");
+   printf("Testing str_compare()\n");
 
    printf("   Boundary Tests\n");
    fflush(stdout);
@@ -326,7 +326,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'\0', 'x', 'x', 'x', 'x', 'x'};
       const char acSrc2[] = {'\0', 'y', 'y', 'y', 'y', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -334,7 +334,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'\0', 'x', 'x', 'x', 'x', 'x'};
       const char acSrc2[] = {'R', 'u', 't', 'h', '\0', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -342,7 +342,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'R', 'u', 't', 'h', '\0', 'y'};
       const char acSrc2[] = {'\0', 'x', 'x', 'x', 'x', 'x'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -353,7 +353,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'R', 'u', 't', 'h', '\0', 'x'};
       const char acSrc2[] = {'R', 'u', 't', 'h', '\0', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -361,7 +361,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'R', 'o', 't', 'h', '\0', 'y'};
       const char acSrc2[] = {'R', 'u', 't', 'h', '\0', 'x'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -369,7 +369,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'R', 'u', 't', 'h', '\0', 'x'};
       const char acSrc2[] = {'R', 'o', 't', 'h', '\0', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -377,7 +377,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'R', 'u', 't', 'h', '\0', 'y'};
       const char acSrc2[] = {'r', 'u', 't', 'h', '\0', 'x'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -385,7 +385,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'r', 'u', 't', 'h', '\0', 'x'};
       const char acSrc2[] = {'R', 'u', 't', 'h', '\0', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -394,7 +394,7 @@ static void testCompare(void)
       const char acSrc1[] = {'B', 'a', 'b', 'e', '\0', 'y'};
       const char acSrc2[] =
          {'B', 'a', 'b', 'e', 'R', 'u', 't', 'h', '\0', 'x'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -403,7 +403,7 @@ static void testCompare(void)
       const char acSrc1[] =
          {'B', 'a', 'b', 'e', 'R', 'u', 't', 'h', '\0', 'x'};
       const char acSrc2[] = {'B', 'a', 'b', 'e', '\0', 'y'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -411,7 +411,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'x', 'y', '\0', 'z', 'z', 'z'};
       const char acSrc2[] = {'y', 'x', '\0', 'z', 'z', 'z'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -419,7 +419,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'y', 'x', '\0', 'z', 'z', 'z'};
       const char acSrc2[] = {'x', 'y', '\0', 'z', 'z', 'z'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -427,7 +427,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'x', 'x', '\0', 'z', 'z', 'z'};
       const char acSrc2[] = {'y', '\0', 'z', 'z', 'z', 'z'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -435,7 +435,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'y', '\0', 'z', 'z', 'z', 'z'};
       const char acSrc2[] = {'x', 'x', '\0', 'z', 'z', 'z'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -443,7 +443,7 @@ static void testCompare(void)
    {
       const char acSrc1[] = {'x', 'y', 'y', '\0', 'z', 'z'};
       const char acSrc2[] = {'y', 'x', 'x', '\0', 'z', 'z'};
-      iResult1 = Str_compare(acSrc1, acSrc2);
+      iResult1 = str_compare(acSrc1, acSrc2);
       iResult2 = strcmp(acSrc1, acSrc2);
       ASSURE(sign(iResult1) == sign(iResult2));
    }
@@ -459,7 +459,7 @@ static void testCompare(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, STRESS_STRING_SIZE);
-         iResult1 = Str_compare(acSrc1, acSrc2);
+         iResult1 = str_compare(acSrc1, acSrc2);
          iResult2 = strcmp(acSrc1, acSrc2);
          ASSURE(sign(iResult1) == sign(iResult2));
       }
@@ -468,14 +468,14 @@ static void testCompare(void)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str_search() function. */
+/* Test the str_search() function. */
 
 static void testSearch(void)
 {
    const char *pcResult1;
    const char *pcResult2;
 
-   printf("Testing Str_search()\n");
+   printf("Testing str_search()\n");
 
    printf("   Boundary Tests\n");
    fflush(stdout);
@@ -483,7 +483,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "";
       const char acNeedle[] = "";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -491,7 +491,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -499,7 +499,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "";
       const char acNeedle[] = "abcde";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -507,7 +507,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = {'\0', 'a', 'b', 'c', 'd', 'e', '\0'};
       const char acNeedle[] = "abcde";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -518,7 +518,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "d";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -526,7 +526,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "cd";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -534,7 +534,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "bcde";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -542,7 +542,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "abcde";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -550,7 +550,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "abcdf";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -558,7 +558,7 @@ static void testSearch(void)
       {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "bcdef";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -566,7 +566,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aab";
       const char acNeedle[] = "ab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -574,7 +574,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaab";
       const char acNeedle[] = "ab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -582,7 +582,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaab";
       const char acNeedle[] = "aab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -590,7 +590,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaab";
       const char acNeedle[] = "aab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -598,7 +598,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaaab";
       const char acNeedle[] = "aab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -606,7 +606,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaab";
       const char acNeedle[] = "aaab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -614,7 +614,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaaab";
       const char acNeedle[] = "aaab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -622,7 +622,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaaaab";
       const char acNeedle[] = "aaab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -630,7 +630,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaaaaaab";
       const char acNeedle[] = "aaab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -638,7 +638,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcdefg";
       const char acNeedle[] = "abcg";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -646,7 +646,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "abcdefg";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -654,7 +654,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aababaab";
       const char acNeedle[] = "abaab";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -662,7 +662,7 @@ static void testSearch(void)
    {
       const char acHaystack[] = "aaa";
       const char acNeedle[] = "a";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -670,7 +670,7 @@ static void testSearch(void)
       {
       const char acHaystack[] = "aabbcc";
       const char acNeedle[] = "abc";
-      pcResult1 = Str_search(acHaystack, acNeedle);
+      pcResult1 = str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
@@ -686,7 +686,7 @@ static void testSearch(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, 1);
-         pcResult1 = Str_search(acSrc1, acSrc2);
+         pcResult1 = str_search(acSrc1, acSrc2);
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
@@ -700,7 +700,7 @@ static void testSearch(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, 2);
-         pcResult1 = Str_search(acSrc1, acSrc2);
+         pcResult1 = str_search(acSrc1, acSrc2);
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
@@ -714,7 +714,7 @@ static void testSearch(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, 3);
-         pcResult1 = Str_search(acSrc1, acSrc2);
+         pcResult1 = str_search(acSrc1, acSrc2);
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
@@ -728,7 +728,7 @@ static void testSearch(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, 4);
-         pcResult1 = Str_search(acSrc1, acSrc2);
+         pcResult1 = str_search(acSrc1, acSrc2);
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
@@ -742,7 +742,7 @@ static void testSearch(void)
       {
          randomString(acSrc1, STRESS_STRING_SIZE);
          randomString(acSrc2, 5);
-         pcResult1 = Str_search(acSrc1, acSrc2);
+         pcResult1 = str_search(acSrc1, acSrc2);
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
@@ -751,7 +751,7 @@ static void testSearch(void)
 
 /*--------------------------------------------------------------------*/
 
-/* Test the Str module.  As always, argc is the command-line argument
+/* Test the str module.  As always, argc is the command-line argument
    count, argv contains the command-line arguments, and argv[0] is the
    name of the executable binary file.  Return 0. */
 
