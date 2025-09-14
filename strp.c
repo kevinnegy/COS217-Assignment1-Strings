@@ -28,6 +28,7 @@ char* str_copy(char* dst, const char* src){
         dst_tmp++;
         src_tmp++;
     }
+    *dst_tmp = '\0';
     return dst;
 }
 
