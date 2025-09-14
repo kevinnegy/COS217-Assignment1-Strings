@@ -5,23 +5,24 @@
 
 void test_get_length(){
     const char * word = "hello";
+    const char* empty_word = "";
+    const char * word2 = "he\nllo";
     assert(str_get_length(word) == 5);
 
-    const char* empty_word = "";
     assert(str_get_length(empty_word) == 0);
 
-    const char * word2 = "he\nllo";
     assert(str_get_length(word2) == 6);
 }
 
 void test_str_copy(){
     const char * word = "hello";
+    const char* word2 = "tester";
     char * dest = (char*) malloc (sizeof(char) * 6);
+
     str_copy(dest, word);
     assert(str_get_length(dest) == 5);
     free(dest);
 
-    const char* word2 = "tester";
     dest = (char*) malloc (sizeof(char) * 25);
     str_copy(dest, word2);
     assert(str_get_length(dest) == 6);
@@ -31,16 +32,17 @@ void test_str_copy(){
 void test_str_compare(){
     const char * w1 = "hello";
     const char * w2 = "none";
+    const char * w3 = "hell";
+
     int ret = str_compare(w1, w2);
     assert(ret == -1);
-    
+
     ret = str_compare(w1, w1);
     assert(ret == 0);
 
     ret = str_compare(w2, w1);
     assert(ret == 1);
 
-    const char * w3 = "hell";
     ret = str_compare(w3, w1);
     assert(ret == -1);
 
@@ -49,8 +51,9 @@ void test_str_compare(){
 }
 
 void test_str_concat(){
-    const char * word = "hello";
-    char * dest = (char*) malloc (sizeof(char) * 15);
+    char * dest;
+    char * word = "hello";
+    dest = (char*) malloc (sizeof(char) * 15);
     str_copy(dest, word);
 
     str_concat(dest, word);
@@ -60,8 +63,9 @@ void test_str_concat(){
 }
 
 void test_str_search(){
+    char * location;
     const char * word = "hello";
-    char * location = str_search(word, "hell");
+    location = str_search(word, "hell");
     assert(word == location);
 
     location = str_search(word, "ll");
@@ -81,5 +85,5 @@ int main(){
     test_str_concat();
     test_str_search();
     printf("Passed all tests\n");
-    
+    return 0;
 }
